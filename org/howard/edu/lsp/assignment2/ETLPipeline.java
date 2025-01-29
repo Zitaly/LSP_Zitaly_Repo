@@ -4,7 +4,9 @@
  */
 package org.howard.edu.lsp.assignment2;
 
-import java.util.Scanner;
+import java.util.Scanner; // Keep this???
+import java.io.FileReader;
+import java.io.FileWriter; // Writer and Reader serves to do what their names imply. OpenCSV needs further study. Not experienced enough.
 
 public class ETLPipeline {
     public static void main(String[] args) {
@@ -19,6 +21,23 @@ public class ETLPipeline {
 
     }
     
+    public static void createArray() {
+        // This has to return an Array. Figure out how to do that via Java.
+        FileReader old = new FileReader("data/products.csv"); //Must read input from a relative directory named data located in the project root folder
+        /*
+         * Path is: JavaProjectRoot/data/products.csv
+         * I have to make this universally applicable. Somehow.
+         * Code is in src. 
+         * data/products.csv?
+         * ../data/products.csv? <- Most likely the correct one.
+         * Study my own directory. What's the structure?
+         * I shouldn't have saved it in my program files.
+         */
+    }
+
+    public static void createCSV() {
+        // Needs to take an Array. Figure out how that's possible in Java. Thankfully, I can create a new file.
+    }
 // Add methods: CSVtoArray, ArraytoCSV
 }
 /*
