@@ -1,7 +1,25 @@
+/*
+ * Name: Xavier Green
+ * 
+ */
 package org.howard.edu.lsp.assignment2;
 
+import java.util.Scanner;
+
 public class ETLPipeline {
+    public static void main(String[] args) {
+
+    }
+
+    public static void alterPrice() {
+
+    }
+
+    public static void setPremium() {
+
+    }
     
+// Add methods: CSVtoArray, ArraytoCSV
 }
 /*
  * Needed Info:
@@ -25,3 +43,9 @@ public class ETLPipeline {
    * T5. Look at chars. First cut down on leading and tailing space. Char 0, find space in middle, then char right after that.
    *  
    */
+
+   /*
+    * Turn the csv into an array?
+    * Use Opencsv?
+    * First option. Make something that works, then go through opencsv.
+    */
