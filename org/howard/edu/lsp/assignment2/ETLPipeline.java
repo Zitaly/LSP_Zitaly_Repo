@@ -5,6 +5,7 @@
 package org.howard.edu.lsp.assignment2;
 
 import java.util.Scanner; // Keep this???
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter; // Writer and Reader serves to do what their names imply. OpenCSV needs further study. Not experienced enough.
 
@@ -22,8 +23,9 @@ public class ETLPipeline {
     }
     
     public static void createArray() {
+        File old = new File("C:\\Users\\xavie\\Documents\\Programming\\Github Repos\\LSP_Zitaly_Repo\\data\\products.csv");
         // This has to return an Array. Figure out how to do that via Java.
-        FileReader old = new FileReader("data/products.csv"); //Must read input from a relative directory named data located in the project root folder
+        FileReader readthis = new FileReader(old); //Must read input from a relative directory named data located in the project root folder
         /*
          * Path is: JavaProjectRoot/data/products.csv
          * I have to make this universally applicable. Somehow.
@@ -32,7 +34,10 @@ public class ETLPipeline {
          * ../data/products.csv? <- Most likely the correct one.
          * Study my own directory. What's the structure?
          * I shouldn't have saved it in my program files.
+         * Relative: data\products.csv
+         * Abs: C:\Users\xavie\Documents\Programming\Github Repos\LSP_Zitaly_Repo\data\products.csv
          */
+        System.out.println(new File(".").getAbsolutePath());
     }
 
     public static void createCSV() {
