@@ -4,14 +4,13 @@
  */
 package org.howard.edu.lsp.assignment2;
 
-import java.util.Scanner; // Keep this???
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter; // Writer and Reader serves to do what their names imply. OpenCSV needs further study. Not experienced enough.
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
 
 public class ETLPipeline {
     public static void main(String[] args) {
-
+        createArray();
     }
 
     public static void alterPrice() {
@@ -23,9 +22,78 @@ public class ETLPipeline {
     }
     
     public static void createArray() {
-        File old = new File("C:\\Users\\xavie\\Documents\\Programming\\Github Repos\\LSP_Zitaly_Repo\\data\\products.csv");
+        Path old = Paths.get("data\\products.csv");
+        System.out.println(Files.exists(old));
+        System.out.println(Files.isReadable(old));
+        List<String> filedata = new ArrayList<String>();
+        List<String> headers = new ArrayList<String>(); // First 4 in list. Dedicated loop for these.
+        // Everything goes in pattern.
+        /*
+         * 1 - ID
+         * 2 - Name
+         * 3 - Price
+         * 4 - Category
+         */
+        List<Integer> id = new ArrayList<Integer>();
+        List<String> names = new ArrayList<String>();
+        List<Double> prices = new ArrayList<Double>();
+        List<String> category = new ArrayList<String>();
+        // Make these global
+        try {
+            filedata = Files.readAllLines(old);
+            System.out.println(filedata);
+            // Go by category? Make a list for each section, allowing for easy alteration and comparison, since they'll inherit their order.
+            for (int i = 0; i < 21; i++)
+            {
+                String line = filedata.get(i);
+                System.out.println(line); // Nevermind, they're saved as lines...
+                if (line.isEmpty())
+                {
+                    continue;
+                }
+                String[] splitline = line.split(",");
+                int count = 1;
+                for (String word: splitline)  {
+                    if (i == 0) {
+                        headers.add(word);
+                    }
+                    else
+                    {
+                        if (count == 1)
+                        {
+                            id.add(Integer.parseInt(word)); // Throws an exception, deal with it.
+                        }
+
+                        else if (count == 2)
+                        {
+                            names.add(word);
+                        }
+
+                        else if (count == 3)
+                        {
+                            prices.add(Double.parseDouble(word));
+                        }
+
+                        else if (count == 4)
+                        {
+                            category.add(word);
+                        }
+                        count++;
+                    }
+                }
+                /*
+                 * 2d loop? Separate each using the commas?
+                 */
+                
+            }
+            System.out.println(id);
+            System.out.println(names);
+            System.out.println(prices);
+            System.out.println(category);
+        } catch (IOException error) {
+            error.printStackTrace();
+        }
         // This has to return an Array. Figure out how to do that via Java.
-        FileReader readthis = new FileReader(old); //Must read input from a relative directory named data located in the project root folder
         /*
          * Path is: JavaProjectRoot/data/products.csv
          * I have to make this universally applicable. Somehow.
@@ -37,7 +105,7 @@ public class ETLPipeline {
          * Relative: data\products.csv
          * Abs: C:\Users\xavie\Documents\Programming\Github Repos\LSP_Zitaly_Repo\data\products.csv
          */
-        System.out.println(new File(".").getAbsolutePath());
+        // System.out.println(new File(".").getAbsolutePath());
     }
 
     public static void createCSV() {
