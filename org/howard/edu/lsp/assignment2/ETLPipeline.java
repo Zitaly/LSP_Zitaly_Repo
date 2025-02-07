@@ -20,10 +20,6 @@ public class ETLPipeline {
     public static void main(String[] args) {
         
         createArray();
-        //System.out.println(id);
-        //System.out.println(names);
-        //System.out.println(prices);
-        //System.out.println(category);
         alterPrice();
         standardizeNames();
         addPriceRange();
@@ -67,7 +63,6 @@ public class ETLPipeline {
     public static void createArray() {
         Path old = Paths.get("data\\products.csv");
         //System.out.println(Files.exists(old));
-        //System.out.println(Files.isReadable(old));
         List<String> filedata = new ArrayList<String>();
         // Everything goes in pattern.
         /*
@@ -120,9 +115,6 @@ public class ETLPipeline {
                         count++;
                     }
                 }
-                /*
-                 * 2d loop? Separate each using the commas?
-                 */
                 
             }
         } catch (IOException error) {
@@ -170,7 +162,3 @@ public class ETLPipeline {
     };
     
 }
-/*
- * Needed Info:
- * 3. Output a changed file.
- */
