@@ -9,24 +9,66 @@ import java.nio.file.*;
 import java.util.*;
 
 public class ETLPipeline {
+    // Notes for the future: If I had more time, I would try to actually do OOP. Next time, I suppose. More study of Java is required.
+    public static List<Integer> id = new ArrayList<Integer>();
+    public static List<String> names = new ArrayList<String>();
+    public static List<Double> prices = new ArrayList<Double>();
+    public static List<String> category = new ArrayList<String>();
+    public static List<String> headers = new ArrayList<String>(); // First 4 in list. Dedicated loop for these.
+    public static List<String> pricerange = new ArrayList<String>();
+    public static List<String> finallist = new ArrayList<String>();
     public static void main(String[] args) {
+        
         createArray();
+        //System.out.println(id);
+        //System.out.println(names);
+        //System.out.println(prices);
+        //System.out.println(category);
+        alterPrice();
+        standardizeNames();
+        addPriceRange();
+        finallist.add(headers.get(0) + "," + headers.get(1) + "," + headers.get(2) + "," + headers.get(3) + "," + "PriceRange");
+        for (int i = 0; i < id.size(); i++)
+        {
+            finallist.add(id.get(i) + "," + names.get(i) + "," + prices.get(i) + "," + category.get(i) + "," + pricerange.get(i));
+        }
+        createCSV();
     }
 
     public static void alterPrice() {
+        // Alters prices for electronics
+        for (int i = 0; i < id.size(); i++)
+        {
+            //Iterate through category and prices at the same time
+            if (category.get(i).equals("Electronics"))
+            {
+                Double newprice = prices.get(i);
+                newprice*=0.90;
+                newprice = (double) Math.round(newprice * 100.0)/100.0;
+                prices.set(i, newprice);
+                if (prices.get(i) > 500.0)
+                {
+                    category.set(i, "Premium Electronics");
+                }
+            }
+        }
 
     }
 
-    public static void setPremium() {
+    public static void standardizeNames() {
 
+        for (int i = 0; i < names.size(); i ++)
+        {
+            String isolated = names.get(i);
+            names.set(i, isolated.toUpperCase());
+        }
     }
     
     public static void createArray() {
         Path old = Paths.get("data\\products.csv");
-        System.out.println(Files.exists(old));
-        System.out.println(Files.isReadable(old));
+        //System.out.println(Files.exists(old));
+        //System.out.println(Files.isReadable(old));
         List<String> filedata = new ArrayList<String>();
-        List<String> headers = new ArrayList<String>(); // First 4 in list. Dedicated loop for these.
         // Everything goes in pattern.
         /*
          * 1 - ID
@@ -34,19 +76,16 @@ public class ETLPipeline {
          * 3 - Price
          * 4 - Category
          */
-        List<Integer> id = new ArrayList<Integer>();
-        List<String> names = new ArrayList<String>();
-        List<Double> prices = new ArrayList<Double>();
-        List<String> category = new ArrayList<String>();
+
         // Make these global
         try {
             filedata = Files.readAllLines(old);
-            System.out.println(filedata);
+            //System.out.println(filedata);
             // Go by category? Make a list for each section, allowing for easy alteration and comparison, since they'll inherit their order.
             for (int i = 0; i < 21; i++)
             {
                 String line = filedata.get(i);
-                System.out.println(line); // Nevermind, they're saved as lines...
+                // System.out.println(line); // Nevermind, they're saved as lines...
                 if (line.isEmpty())
                 {
                     continue;
@@ -86,58 +125,52 @@ public class ETLPipeline {
                  */
                 
             }
-            System.out.println(id);
-            System.out.println(names);
-            System.out.println(prices);
-            System.out.println(category);
         } catch (IOException error) {
             error.printStackTrace();
         }
-        // This has to return an Array. Figure out how to do that via Java.
-        /*
-         * Path is: JavaProjectRoot/data/products.csv
-         * I have to make this universally applicable. Somehow.
-         * Code is in src. 
-         * data/products.csv?
-         * ../data/products.csv? <- Most likely the correct one.
-         * Study my own directory. What's the structure?
-         * I shouldn't have saved it in my program files.
-         * Relative: data\products.csv
-         * Abs: C:\Users\xavie\Documents\Programming\Github Repos\LSP_Zitaly_Repo\data\products.csv
-         */
-        // System.out.println(new File(".").getAbsolutePath());
     }
 
-    public static void createCSV() {
-        // Needs to take an Array. Figure out how that's possible in Java. Thankfully, I can create a new file.
+    public static void addPriceRange(){ // Checks price and assigns price range
+        for (int i = 0; i < id.size(); i++)
+        {
+            if (prices.get(i) >= 500.01)
+            {
+                pricerange.add("Premium");
+            }
+            else if (prices.get(i) >= 100.01)
+            {
+                pricerange.add("High");
+            }
+            else if (prices.get(i) >= 10.01)
+            {
+                pricerange.add("Medium");
+            }
+            else
+            {
+                pricerange.add("Low");
+            }
+        }
+
     }
-// Add methods: CSVtoArray, ArraytoCSV
+    public static void createCSV() 
+    {
+        // Needs to take an Array. Figure out how that's possible in Java. Thankfully, I can create a new file.
+        try 
+        {
+            Path outputpath = Paths.get("data\\transformed_products.csv");
+            Files.createFile(outputpath);
+            Files.write(outputpath, finallist);
+        } 
+        catch (IOException error)
+        {
+            error.printStackTrace();
+        }
+
+            
+    };
+    
 }
 /*
  * Needed Info:
- * 1. Read input files from a relative directory named data.
- * 2. Read CSV
- * 2. Transform String and Numbers within the file.
  * 3. Output a changed file.
  */
-
- /*
-  * Cat. 2
-  * Go by commas?
-  */
-
-  /*
-   * Cat. 3
-   * T1. If Category = Electronics; price *= 0.90. Rounded to two decimals.
-   * T2. Ask professor if this is the same as the standardization in that the first letter is capitalized. "NAME" vs "Name"
-   * T3. If Price > 500; Category = Premium Electronics
-   * T4. Same implementation as a grade scale. High to low
-   * T5. Look at chars. First cut down on leading and tailing space. Char 0, find space in middle, then char right after that.
-   *  
-   */
-
-   /*
-    * Turn the csv into an array?
-    * Use Opencsv?
-    * First option. Make something that works, then go through opencsv.
-    */
