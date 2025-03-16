@@ -17,14 +17,12 @@ public class IntegerSet {
 
     // CLEARS INTERNAL REPRESENTATION OF SET
     public void clear() {
-        // FILL OUT
+        set.clear();
     }
 
     // RETURNS SET LENGTH
     public int length() {
-
-        // FILL OUT
-        return 5; // Placeholder
+        return set.size();
     }
 
     /*
@@ -34,67 +32,70 @@ public class IntegerSet {
      */
     public boolean equals(Object o) {
         // FILL OUT
+        set.containsAll(set); // Placeholder. check docs of this code. Can object be tied to set?
+        // I could also use .equals.
+        set.equals(o); // Source: https://docs.oracle.com/javase/8/docs/api/java/util/Set.html
         return false;
     }
 
     // RETURNS TRUE IF SET CONTAINS VALUES.
     public boolean contains(int value) {
-        // FILL OUT
-        return false;
+        return set.contains(value);
     }
 
     // Returns Largest
     public int largest() {
         // Fill out
+        // Iterate through set, save smallest number. Check if there is built in function like python.
         return 5;
     }
 
     //Returns smallest
     public int smallest() {
         // Fill out
+        // Same as above.
         return 5;
     }
 
     // Adds item or does nothing if already present
     public void add(int item) {
-        // Fill out
+        set.add(item);
     }
 
     //Remove item or does nothing if not present
     public void remove(int item) {
-        //Fill out
+        set.remove(item);
     }
 
     //Set union
     public void union(IntegerSet intSetb) {
-        // Fill out
+        set.addAll(intSetb.set);
     }
 
     // Set intersect, all elements in s1 and s2
     public void intersect(IntegerSet intSetb) {
-        // Fill out
+        set.retainAll(intSetb.set); // Source: https://docs.oracle.com/javase/8/docs/api/java/util/Set.html
     }
 
     // Set difference (s1-s2)
     public void diff(IntegerSet intSetb) {
-        // Fill out
+        set.removeAll(intSetb.set); // Source: https://docs.oracle.com/javase/8/docs/api/java/util/Set.html
     }
 
     // set complement (All elements not in s1)
     public void complement(IntegerSet intSetb) {
-        // Fill out
+        intSetb.set.removeAll(set); // Source: https://docs.oracle.com/javase/8/docs/api/java/util/Set.html
     }
 
     // Check empty.
     public boolean isEmpty() {
-        // Fill out
-        return true;
+        return set.isEmpty();
     }
 
     // Return String Rep
     public String toString() {
-        // Fill out
-        return "S";
+        String setstring = set.toString();
+        return setstring;
     }
 
 
