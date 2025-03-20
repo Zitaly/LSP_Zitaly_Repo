@@ -1,0 +1,38 @@
+Xavier Green
+(Transfer this to doc if enough time.)
+
+
+Given:
+The library maintains a collection of books, each having a title, author, ISBN, and availability status.
+Members of the library can borrow books if they are available. 
+Each member can borrow only up to 3 books at a time.  
+When a member returns a book, it should become available again.  
+Librarians can add new books to the collection and remove books that are outdated or lost.  
+The system must allow the librarian to view the list of available books and see which books are currently checked out and who has borrowed them.
+
+Part 1: Identify Classes
+1. Name: Book
+   Responsibilites: This class holds title, author, ISBN, and availability.
+                    This class can update availability.
+   Collaborators: None.
+
+
+2. Name: Members
+   Responsibilites: This class can borrow books.
+                    This class can return a book.
+   Collaborators: Shelf - The member will need to look at the shelf to see the books.
+                  Book - The actions of borrowing and returning a book will change its availability.
+
+3. Name: Librarians
+   Responsibilites: This class can add books.
+                    This class can remove books.
+                    This class can view books.
+   Collaborators: Shelf - The librarian will need to interact with the shelf to add, remove, and view books.
+                  Book - The librarian, through adding books, will need to input information.
+                  
+
+4. Name: Shelf
+   Responsibilites: This class allows the viewing of all books.
+                    This class allows for the viewing of checked out status.
+   Collaborators: Members - The shelf needs to keep track of what books the members have checked out.
+                  Books - Shelf needs to keep track of books and display their information.

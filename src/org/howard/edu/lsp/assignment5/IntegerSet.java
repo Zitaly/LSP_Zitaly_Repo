@@ -1,3 +1,6 @@
+/*
+ * Name: Xavier Green
+ */
 package org.howard.edu.lsp.assignment5;
 import java.util.List;
 import java.util.ArrayList; // Change to * if needed.
@@ -32,10 +35,19 @@ public class IntegerSet {
      */
     public boolean equals(Object o) {
         // FILL OUT
-        set.containsAll(set); // Placeholder. check docs of this code. Can object be tied to set?
+        // Try and fail? Treat o as if it is an integerset
+            
         // I could also use .equals.
-        set.equals(o); // Source: https://docs.oracle.com/javase/8/docs/api/java/util/Set.html
-        return false;
+        // Check class of o. If not IntegerSet, return False?
+        // If true, can we cast it as IntegerSet? Try that. Then do the rest.
+        if (o.getClass() == this.getClass()) {
+            IntegerSet b = (IntegerSet) o;
+            return set.containsAll(b.set); // Placeholder. check docs of this code. Can object be tied to set?
+        }
+        else {
+            return false;
+        }
+        
     }
 
     // RETURNS TRUE IF SET CONTAINS VALUES.
@@ -45,16 +57,25 @@ public class IntegerSet {
 
     // Returns Largest
     public int largest() {
-        // Fill out
-        // Iterate through set, save smallest number. Check if there is built in function like python.
-        return 5;
+        int large = set.get(0); 
+        for (int i : set) {
+            if ( i > large) {
+                large = i;
+            }
+        }
+
+        return large;
     }
 
     //Returns smallest
     public int smallest() {
-        // Fill out
-        // Same as above.
-        return 5;
+        int small = set.get(0);
+        for (int i : set) {
+            if (i < small) {
+                small = i;
+            }
+        }
+        return small;
     }
 
     // Adds item or does nothing if already present
