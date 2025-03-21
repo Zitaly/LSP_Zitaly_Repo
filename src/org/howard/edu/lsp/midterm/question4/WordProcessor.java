@@ -1,4 +1,4 @@
-package org.howard.lsp.midterm.question4;
+package org.howard.edu.lsp.midterm.question4;
 import java.util.*;
 
 public class WordProcessor {
