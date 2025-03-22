@@ -34,15 +34,14 @@ public class IntegerSet {
      * OVERRIDES EQUAL METHOD FROM OBJECT CLASS
      */
     public boolean equals(Object o) {
-        // FILL OUT
-        // Try and fail? Treat o as if it is an integerset
-            
-        // I could also use .equals.
-        // Check class of o. If not IntegerSet, return False?
-        // If true, can we cast it as IntegerSet? Try that. Then do the rest.
         if (o.getClass() == this.getClass()) {
             IntegerSet b = (IntegerSet) o;
-            return set.containsAll(b.set); // Placeholder. check docs of this code. Can object be tied to set?
+            for (int i : b.set) {
+                if (set.contains(i) == false) {
+                    return false;
+                }
+            }
+            return true;
         }
         else {
             return false;
@@ -83,9 +82,12 @@ public class IntegerSet {
         set.add(item);
     }
 
-    //Remove item or does nothing if not present
+    // Rmove item or does nothing if not present
     public void remove(int item) {
-        set.remove(item);
+        while (set.contains(item)) {
+            set.remove(set.indexOf(item)); // https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
+            
+        }
     }
 
     //Set union
@@ -105,7 +107,10 @@ public class IntegerSet {
 
     // set complement (All elements not in s1)
     public void complement(IntegerSet intSetb) {
-        intSetb.set.removeAll(set); // Source: https://docs.oracle.com/javase/8/docs/api/java/util/Set.html
+        List<Integer> temp = new ArrayList<Integer>();
+        temp = intSetb.set;
+        temp.removeAll(set); // Source: https://docs.oracle.com/javase/8/docs/api/java/util/Set.html
+        set = temp;
     }
 
     // Check empty.

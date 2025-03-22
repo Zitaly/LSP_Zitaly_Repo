@@ -39,6 +39,8 @@ public class Driver {
         // Remove from set
         set1.remove(0);
         set1.remove(10);
+        System.out.println("Set 1 after removal of 0 is:" + set1);
+        System.out.println("Set 2 after removal of 10 is:" + set2);
 
         // Set union
         set1.union(set2);
@@ -57,6 +59,7 @@ public class Driver {
         set1.add(4);
         set1.add(5);
         set1.add(1);
+        System.out.println("New set1: " + set1);
         set1.intersect(set2);
         System.out.println("Intersection of set1 and set2:" + set1);
 
@@ -65,6 +68,7 @@ public class Driver {
         set1.add(4);
         set1.add(5);
         set1.add(1);
+        System.out.println("New set1: " + set1);
         set1.diff(set2);
         System.out.println("Set1 - Set2 is:" + set1);
         
@@ -73,8 +77,24 @@ public class Driver {
         universalset.add(0);
         universalset.add(1);
         universalset.add(2);
-        
+        universalset.add(3);
+        universalset.add(4);
+        universalset.add(5);
+        universalset.add(6);
+        universalset.add(7);
+        universalset.add(8);
+        universalset.add(9);
+        universalset.add(10);
+        System.out.println("Universal Set: " + universalset);
+        set1.complement(universalset);
+        System.out.println("Complement of set1:" + set1);
 
-        // Set equals
+        // Set equals ################# Wrong
+        // Note: Equals, by its function, tests contains.
+        System.out.println("Is set1 and set2 equal:" + set1.equals(set2));
+
+        // Set contains
+        System.out.println("Does set1 contain 2:" + set1.contains(2));
+        System.out.println("Does set2 contain 100:" + set2.contains(100));
     }
 }
