@@ -41,6 +41,11 @@ public class IntegerSet {
                     return false;
                 }
             }
+            for (int i : set) {
+                if ( b.set.contains(i) == false) {
+                    return false;
+                }
+            }
             return true;
         }
         else {
