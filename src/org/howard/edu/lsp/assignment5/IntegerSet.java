@@ -23,11 +23,20 @@ public class IntegerSet {
         set.clear();
     }
 
+    
+    /** 
+     * @return int
+     */
     // RETURNS SET LENGTH
     public int length() {
         return set.size();
     }
 
+    
+    /** 
+     * @param o
+     * @return boolean
+     */
     /*
      * TRUE IF 2 SETS ARE EQUAL
      * EQUAL MEANS THEY CONTAIN SAME VALUES IN ANY ORDER
@@ -54,11 +63,20 @@ public class IntegerSet {
         
     }
 
+    
+    /** 
+     * @param value
+     * @return boolean
+     */
     // RETURNS TRUE IF SET CONTAINS VALUES.
     public boolean contains(int value) {
         return set.contains(value);
     }
 
+    
+    /** 
+     * @return int
+     */
     // Returns Largest
     public int largest() {
         int large = set.get(0); 
@@ -71,6 +89,10 @@ public class IntegerSet {
         return large;
     }
 
+    
+    /** 
+     * @return int
+     */
     //Returns smallest
     public int smallest() {
         int small = set.get(0);
@@ -82,11 +104,19 @@ public class IntegerSet {
         return small;
     }
 
+    
+    /** 
+     * @param item
+     */
     // Adds item or does nothing if already present
     public void add(int item) {
         set.add(item);
     }
 
+    
+    /** 
+     * @param item
+     */
     // Rmove item or does nothing if not present
     public void remove(int item) {
         while (set.contains(item)) {
@@ -95,21 +125,37 @@ public class IntegerSet {
         }
     }
 
+    
+    /** 
+     * @param intSetb
+     */
     //Set union
     public void union(IntegerSet intSetb) {
         set.addAll(intSetb.set);
     }
 
+    
+    /** 
+     * @param intSetb
+     */
     // Set intersect, all elements in s1 and s2
     public void intersect(IntegerSet intSetb) {
         set.retainAll(intSetb.set); // Source: https://docs.oracle.com/javase/8/docs/api/java/util/Set.html
     }
 
+    
+    /** 
+     * @param intSetb
+     */
     // Set difference (s1-s2)
     public void diff(IntegerSet intSetb) {
         set.removeAll(intSetb.set); // Source: https://docs.oracle.com/javase/8/docs/api/java/util/Set.html
     }
 
+    
+    /** 
+     * @param intSetb
+     */
     // set complement (All elements not in s1)
     public void complement(IntegerSet intSetb) {
         List<Integer> temp = new ArrayList<Integer>();
@@ -118,11 +164,19 @@ public class IntegerSet {
         set = temp;
     }
 
+    
+    /** 
+     * @return boolean
+     */
     // Check empty.
     public boolean isEmpty() {
         return set.isEmpty();
     }
 
+    
+    /** 
+     * @return String
+     */
     // Return String Rep
     public String toString() {
         String setstring = set.toString();

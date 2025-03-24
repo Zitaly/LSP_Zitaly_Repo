@@ -108,6 +108,7 @@ public class Driver {
         System.out.println("Is set1 and set2 equal:" + set1.equals(set2));
 
         // Set contains
+        System.out.println("\nSet Contains");
         System.out.println("Does set1 contain 2:" + set1.contains(2));
         System.out.println("Does set2 contain 100:" + set2.contains(100));
     }
