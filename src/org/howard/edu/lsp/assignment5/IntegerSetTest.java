@@ -1,6 +1,6 @@
 package org.howard.edu.lsp.assignment5;
 
-import static org.junit.Test;
+import static org.junit.Test.assertEquals;
 
 public class IntegerSetTest {
     private IntegerSet integerset1;
@@ -15,6 +15,10 @@ public class IntegerSetTest {
     @Test
     @DisplayName("Test Clear")
     public void testClear {
+        integerset1.clear();
+        integerset2.clear();
+        assertEquals([], integerset1.toString());
+        assertEquals([], integerset2.toString());
 
     }
 
