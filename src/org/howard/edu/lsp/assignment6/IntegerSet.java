@@ -1,7 +1,7 @@
 /*
  * Name: Xavier Green
  */
-package org.howard.edu.lsp.assignment5;
+package org.howard.edu.lsp.assignment6;
 import java.util.List;
 import java.util.ArrayList; // Change to * if needed.
 
